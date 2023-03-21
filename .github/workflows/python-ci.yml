@@ -28,3 +28,12 @@ jobs:
       run: |
         pipenv install --dev
         pipenv run flake8 .
+    - name: azure login
+      uses: azure/login@v1
+      with:
+        creds: ${{secrets.AZUREML_CREDENTIALS}}
+    - name: run train/azure/run_pipeline.py.py
+      run: |
+          pipenv install
+          pipenv run python azureml_run_dumb_pipeline.py
+      working-directory: train
