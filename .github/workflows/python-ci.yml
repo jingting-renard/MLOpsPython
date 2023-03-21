@@ -19,15 +19,6 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install --user pipenv
-    - name: Format with Black
-      run: |
-        pipenv install --dev
-        pipenv run black .
-        pipenv run black . --check
-    - name: Lint with flake8
-      run: |
-        pipenv install --dev
-        pipenv run flake8 .
     - name: azure login
       uses: azure/login@v1
       with:
@@ -37,3 +28,13 @@ jobs:
           pipenv install
           pipenv run python azureml_run_dumb_pipeline.py
       working-directory: train
+    - name: Format with Black
+      run: |
+        pipenv install --dev
+        pipenv run black .
+        pipenv run black . --check
+    - name: Lint with flake8
+      run: |
+        pipenv install --dev
+        pipenv run flake8 .
+    
